@@ -1,0 +1,1179 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Langchain-Chatchat API Server",
+    "version": "v0.2.1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "swagger 文档",
+        "operationId": "document__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/fastchat": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "与llm模型对话(直接与fastchat api对话)",
+        "operationId": "openai_chat_chat_fastchat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenAiChatMsgIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/chat": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "与llm模型对话(通过LLMChain)",
+        "operationId": "chat_chat_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_chat_chat_chat_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/knowledge_base_chat": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "与知识库对话",
+        "operationId": "knowledge_base_chat_chat_knowledge_base_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_knowledge_base_chat_chat_knowledge_base_chat_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/search_engine_chat": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "与搜索引擎对话",
+        "operationId": "search_engine_chat_chat_search_engine_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_search_engine_chat_chat_search_engine_chat_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/list_knowledge_bases": {
+      "get": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "获取知识库列表",
+        "operationId": "list_kbs_knowledge_base_list_knowledge_bases_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/create_knowledge_base": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "创建知识库",
+        "operationId": "create_kb_knowledge_base_create_knowledge_base_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_kb_knowledge_base_create_knowledge_base_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/delete_knowledge_base": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "删除知识库",
+        "operationId": "delete_kb_knowledge_base_delete_knowledge_base_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "title": "Knowledge Base Name",
+                "examples": [
+                  "samples"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/list_docs": {
+      "get": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "获取知识库内的文件列表",
+        "operationId": "list_docs_knowledge_base_list_docs_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Knowledge Base Name"
+            },
+            "name": "knowledge_base_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/search_docs": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "搜索知识库",
+        "operationId": "search_docs_knowledge_base_search_docs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_search_docs_knowledge_base_search_docs_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentWithScore"
+                  },
+                  "type": "array",
+                  "title": "Response Search Docs Knowledge Base Search Docs Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/upload_doc": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "上传文件到知识库",
+        "operationId": "upload_doc_knowledge_base_upload_doc_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_doc_knowledge_base_upload_doc_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/delete_doc": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "删除知识库内指定文件",
+        "operationId": "delete_doc_knowledge_base_delete_doc_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_delete_doc_knowledge_base_delete_doc_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/update_doc": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "更新现有文件到知识库",
+        "description": "更新知识库文档",
+        "operationId": "update_doc_knowledge_base_update_doc_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_update_doc_knowledge_base_update_doc_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/download_doc": {
+      "get": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "下载对应的知识文件",
+        "description": "下载知识库文档",
+        "operationId": "download_doc_knowledge_base_download_doc_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Knowledge Base Name",
+              "examples": [
+                "samples"
+              ]
+            },
+            "name": "knowledge_base_name",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Name",
+              "examples": [
+                "test.txt"
+              ]
+            },
+            "name": "file_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge_base/recreate_vector_store": {
+      "post": {
+        "tags": [
+          "Knowledge Base Management"
+        ],
+        "summary": "根据content中文档重建向量库，流式输出处理进度。",
+        "description": "recreate vector store from the content.\nthis is usefull when user can copy files to content folder directly instead of upload through network.\nby default, get_service_by_name only return knowledge base in the info.db and having document files in it.\nset allow_empty_kb to True make it applied on empty knowledge base which it not in the info.db or having no documents.",
+        "operationId": "recreate_vector_store_knowledge_base_recreate_vector_store_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_recreate_vector_store_knowledge_base_recreate_vector_store_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseResponse": {
+        "properties": {
+          "code": {
+            "type": "integer",
+            "title": "Code",
+            "description": "HTTP status code",
+            "default": 200
+          },
+          "msg": {
+            "type": "string",
+            "title": "Msg",
+            "description": "HTTP status message",
+            "default": "success"
+          }
+        },
+        "type": "object",
+        "title": "BaseResponse",
+        "example": {
+          "code": 200,
+          "msg": "success"
+        }
+      },
+      "Body_chat_chat_chat_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "用户输入",
+            "examples": [
+              "恼羞成怒"
+            ]
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/History"
+            },
+            "type": "array",
+            "title": "History",
+            "description": "历史对话",
+            "default": [],
+            "examples": [
+              [
+                {
+                  "role": "user",
+                  "content": "我们来玩成语接龙，我先来，生龙活虎"
+                },
+                {
+                  "role": "assistant",
+                  "content": "虎头虎脑"
+                }
+              ]
+            ]
+          },
+          "stream": {
+            "type": "boolean",
+            "title": "Stream",
+            "description": "流式输出",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "Body_chat_chat_chat_post"
+      },
+      "Body_create_kb_knowledge_base_create_knowledge_base_post": {
+        "properties": {
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "examples": [
+              "samples"
+            ]
+          },
+          "vector_store_type": {
+            "type": "string",
+            "title": "Vector Store Type",
+            "default": "faiss"
+          },
+          "embed_model": {
+            "type": "string",
+            "title": "Embed Model",
+            "default": "m3e-base"
+          }
+        },
+        "type": "object",
+        "required": [
+          "knowledge_base_name"
+        ],
+        "title": "Body_create_kb_knowledge_base_create_knowledge_base_post"
+      },
+      "Body_delete_doc_knowledge_base_delete_doc_post": {
+        "properties": {
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "examples": [
+              "samples"
+            ]
+          },
+          "doc_name": {
+            "type": "string",
+            "title": "Doc Name",
+            "examples": [
+              "file_name.md"
+            ]
+          },
+          "delete_content": {
+            "type": "boolean",
+            "title": "Delete Content",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "knowledge_base_name",
+          "doc_name"
+        ],
+        "title": "Body_delete_doc_knowledge_base_delete_doc_post"
+      },
+      "Body_knowledge_base_chat_chat_knowledge_base_chat_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "用户输入",
+            "examples": [
+              "你好"
+            ]
+          },
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "description": "知识库名称",
+            "examples": [
+              "samples"
+            ]
+          },
+          "top_k": {
+            "type": "integer",
+            "title": "Top K",
+            "description": "匹配向量数",
+            "default": 5
+          },
+          "score_threshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Score Threshold",
+            "description": "知识库匹配相关度阈值，取值范围在0-1之间，SCORE越小，相关度越高，取到1相当于不筛选，建议设置在0.5左右",
+            "default": 1
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/History"
+            },
+            "type": "array",
+            "title": "History",
+            "description": "历史对话",
+            "default": [],
+            "examples": [
+              [
+                {
+                  "role": "user",
+                  "content": "我们来玩成语接龙，我先来，生龙活虎"
+                },
+                {
+                  "role": "assistant",
+                  "content": "虎头虎脑"
+                }
+              ]
+            ]
+          },
+          "stream": {
+            "type": "boolean",
+            "title": "Stream",
+            "description": "流式输出",
+            "default": false
+          },
+          "local_doc_url": {
+            "type": "boolean",
+            "title": "Local Doc Url",
+            "description": "知识文件返回本地路径(true)或URL(false)",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "knowledge_base_name"
+        ],
+        "title": "Body_knowledge_base_chat_chat_knowledge_base_chat_post"
+      },
+      "Body_recreate_vector_store_knowledge_base_recreate_vector_store_post": {
+        "properties": {
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "examples": [
+              "samples"
+            ]
+          },
+          "allow_empty_kb": {
+            "type": "boolean",
+            "title": "Allow Empty Kb",
+            "default": true
+          },
+          "vs_type": {
+            "type": "string",
+            "title": "Vs Type",
+            "default": "faiss"
+          },
+          "embed_model": {
+            "type": "string",
+            "title": "Embed Model",
+            "default": "m3e-base"
+          }
+        },
+        "type": "object",
+        "required": [
+          "knowledge_base_name"
+        ],
+        "title": "Body_recreate_vector_store_knowledge_base_recreate_vector_store_post"
+      },
+      "Body_search_docs_knowledge_base_search_docs_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "用户输入",
+            "examples": [
+              "你好"
+            ]
+          },
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "description": "知识库名称",
+            "examples": [
+              "samples"
+            ]
+          },
+          "top_k": {
+            "type": "integer",
+            "title": "Top K",
+            "description": "匹配向量数",
+            "default": 5
+          },
+          "score_threshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Score Threshold",
+            "description": "知识库匹配相关度阈值，取值范围在0-1之间，SCORE越小，相关度越高，取到1相当于不筛选，建议设置在0.5左右",
+            "default": 1
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "knowledge_base_name"
+        ],
+        "title": "Body_search_docs_knowledge_base_search_docs_post"
+      },
+      "Body_search_engine_chat_chat_search_engine_chat_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "用户输入",
+            "examples": [
+              "你好"
+            ]
+          },
+          "search_engine_name": {
+            "type": "string",
+            "title": "Search Engine Name",
+            "description": "搜索引擎名称",
+            "examples": [
+              "duckduckgo"
+            ]
+          },
+          "top_k": {
+            "type": "integer",
+            "title": "Top K",
+            "description": "检索结果数量",
+            "default": 5
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/History"
+            },
+            "type": "array",
+            "title": "History",
+            "description": "历史对话",
+            "default": [],
+            "examples": [
+              [
+                {
+                  "role": "user",
+                  "content": "我们来玩成语接龙，我先来，生龙活虎"
+                },
+                {
+                  "role": "assistant",
+                  "content": "虎头虎脑"
+                }
+              ]
+            ]
+          },
+          "stream": {
+            "type": "boolean",
+            "title": "Stream",
+            "description": "流式输出",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "search_engine_name"
+        ],
+        "title": "Body_search_engine_chat_chat_search_engine_chat_post"
+      },
+      "Body_update_doc_knowledge_base_update_doc_post": {
+        "properties": {
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "examples": [
+              "samples"
+            ]
+          },
+          "file_name": {
+            "type": "string",
+            "title": "File Name",
+            "examples": [
+              "file_name"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "knowledge_base_name",
+          "file_name"
+        ],
+        "title": "Body_update_doc_knowledge_base_update_doc_post"
+      },
+      "Body_upload_doc_knowledge_base_upload_doc_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File",
+            "description": "上传文件"
+          },
+          "knowledge_base_name": {
+            "type": "string",
+            "title": "Knowledge Base Name",
+            "description": "知识库名称",
+            "examples": [
+              "kb1"
+            ]
+          },
+          "override": {
+            "type": "boolean",
+            "title": "Override",
+            "description": "覆盖已有文件",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "knowledge_base_name"
+        ],
+        "title": "Body_upload_doc_knowledge_base_upload_doc_post"
+      },
+      "DocumentWithScore": {
+        "properties": {
+          "page_content": {
+            "type": "string",
+            "title": "Page Content"
+          },
+          "metadata": {
+            "type": "object",
+            "title": "Metadata"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "page_content"
+        ],
+        "title": "DocumentWithScore",
+        "description": "Class for storing a piece of text and associated metadata."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "History": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "History",
+        "description": "对话历史\n可从dict生成，如\nh = History(**{\"role\":\"user\",\"content\":\"你好\"})\n也可转换为tuple，如\nh.to_msy_tuple = (\"human\", \"你好\")"
+      },
+      "ListResponse": {
+        "properties": {
+          "code": {
+            "type": "integer",
+            "title": "Code",
+            "description": "HTTP status code",
+            "default": 200
+          },
+          "msg": {
+            "type": "string",
+            "title": "Msg",
+            "description": "HTTP status message",
+            "default": "success"
+          },
+          "data": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Data",
+            "description": "List of names"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ListResponse",
+        "example": {
+          "code": 200,
+          "msg": "success",
+          "data": [
+            "doc1.docx",
+            "doc2.pdf",
+            "doc3.txt"
+          ]
+        }
+      },
+      "OpenAiChatMsgIn": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "default": "chatglm2-6b"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/OpenAiMessage"
+            },
+            "type": "array",
+            "title": "Messages"
+          },
+          "temperature": {
+            "type": "number",
+            "title": "Temperature",
+            "default": 0.7
+          },
+          "n": {
+            "type": "integer",
+            "title": "N",
+            "default": 1
+          },
+          "max_tokens": {
+            "type": "integer",
+            "title": "Max Tokens",
+            "default": 1024
+          },
+          "stop": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Stop",
+            "default": []
+          },
+          "stream": {
+            "type": "boolean",
+            "title": "Stream",
+            "default": false
+          },
+          "presence_penalty": {
+            "type": "integer",
+            "title": "Presence Penalty",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "type": "integer",
+            "title": "Frequency Penalty",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "messages"
+        ],
+        "title": "OpenAiChatMsgIn"
+      },
+      "OpenAiMessage": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role",
+            "default": "user"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "default": "hello"
+          }
+        },
+        "type": "object",
+        "title": "OpenAiMessage"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

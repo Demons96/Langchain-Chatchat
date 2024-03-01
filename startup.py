@@ -8,6 +8,7 @@ from pprint import pprint
 # 设置numexpr最大线程数，默认为CPU核心数
 try:
     import numexpr
+
     n_cores = numexpr.utils.detect_number_of_cores()
     os.environ["NUMEXPR_MAX_THREADS"] = str(n_cores)
 except:

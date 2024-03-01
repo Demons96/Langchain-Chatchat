@@ -153,7 +153,7 @@ def MakeFastAPIOffline(
         remove_route(docs_url)
         remove_route(swagger_ui_oauth2_redirect_url)
 
-        # Define the doc and redoc pages, pointing at the right files
+        # Define the doc and redoc pages_delete, pointing at the right files
         @app.get(docs_url, include_in_schema=False)
         async def custom_swagger_ui_html(request: Request) -> HTMLResponse:
             root = request.scope.get("root_path")
